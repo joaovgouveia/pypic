@@ -1,2 +1,3 @@
-output_images
+output_images/*
 test_images
+work_images/*
