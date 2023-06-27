@@ -27,12 +27,9 @@ def create_window(file_name):
     frame.columnconfigure(0, weight=2)
     frame.columnconfigure(1, weight=1)
 
-    # preview = tk.Image(frame)
-
     rotation_field = tk.Frame(frame)
     rotation_field.rowconfigure(0, weight=1)
     rotation_field.rowconfigure(1, weight=1)
-    #rotation_field.rowconfigure(2, weight=1)
 
     rotation_lable = tk.Label(rotation_field, text='Rotation:', font=('Arial', '8'))
     rotation_lable.grid(row=0, column=0)
@@ -40,13 +37,7 @@ def create_window(file_name):
     rotation_input_field = tk.Entry(rotation_field)
     rotation_input_field.grid(row=1, column=0, padx=10)
     
-    #rotation_is_expandible = tk.Checkbutton(rotation_input_field)
-    #rotation_is_expandible.grid(row=2, column=1)
-
     rotation_field.grid(column=1, row=0)
-
-    #test = tk.Text(frame, height='5', padx=15, font=('Arial', '12'))
-    #test.grid(row=0, column=0)
 
     frame.pack()
 
@@ -64,4 +55,3 @@ def main():
     setup()
 
 main()
-
