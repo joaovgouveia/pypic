@@ -45,13 +45,30 @@ def create_window(file_name):
     submit_button.pack()
 
     root.mainloop()
-    
+
+def test():
+    test_window = tk.Tk()
+    test_window.geometry('150x75')
+    test_window.title('Test')
+
+    label = tk.Label(master = test_window, text='Test Label')
+    label.pack()   
+
+    entry = tk.Entry(master = test_window)
+    entry.pack()
+
+    button = tk.Button(master = test_window, text='submit')
+    button.pack()
+
+    test_window.mainloop()
+
 def setup():
     image = edit.open_image('test_images/picture.jpg')
     create_preview(image)
     create_window('picture.jpg')
 
 def main():
-    setup()
+    #setup()
+    test()
 
 main()
