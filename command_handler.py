@@ -2,6 +2,7 @@ import edit
 
 working_image_path = "./work_images"
 output_path = "./output_images"
+input_path = "./input_images"
 
 def format_command(line):
     command_args = line.split()
@@ -19,7 +20,7 @@ def handle_command(line, img):
         hasArgs = True
 
     if hasArgs and args[0] == "test_img":
-        args[0] = "./test_images/picture.jpg"
+        args[0] = "test_picture.jpg"
 
     response = {"image": img,
                 "sucsses": False,
@@ -28,7 +29,7 @@ def handle_command(line, img):
     
     if command_name == "open":
         response["sucsses"] = True
-        response["image"] = edit.open_image(args[0])
+        response["image"] = edit.open_image(f"{input_path}/{args[0]}")
     
         edit.save_image(response["image"], "work_img", working_image_path, "png")
 
