@@ -1,7 +1,7 @@
 import edit
 
 working_image_path = "./work_images"
-output_path = "./output"
+output_path = "./output_images"
 
 def format_command(line):
     command_args = line.split()
@@ -50,10 +50,10 @@ def handle_command(line, img):
 
     elif command_name == "flip":
         if hasArgs:
-            if args[0] == "H":
+            if args[0] == "h":
                 response["image"] = edit.flip_horizontal(img)
                 response["sucsses"] = True
-            elif args[0] == "V":
+            elif args[0] == "v":
                 response["image"] = edit.flip_vertical(img)
                 response["sucsses"] = True
             else:

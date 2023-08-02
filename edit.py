@@ -32,3 +32,6 @@ def scale_resize(image, scale, upscale):
         
 def free_resize(image, new_size):
     return image.resize((new_size[0], new_size[1]))
+
+def duck():
+    print("quack")
