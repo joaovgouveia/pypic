@@ -1,5 +1,8 @@
 # PyPic - Python Image Editor - V 0.1
 > A, simple, terminal based, photo editor in python.
+> 
+> Made using the Python Library Pillow.
+> Link for the Library: https://pypi.org/project/Pillow/
 
 ## How to setup
 * Download the project form github.
