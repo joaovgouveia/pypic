@@ -1,10 +1,10 @@
-# PyPic - Python Image Editor
+# PyPic - Python Image Editor - V 0.1
 > A, simple, terminal based, photo editor in python.
 
 ## How to setup
 * Download the project form github.
 * Put the files that you want to edit in the ``` input_images ``` directory.
-* Run ``` python3 main.py``` inside the project directory.
+* Run ```python3 main.py``` inside the project directory.
 * Load the image and start editing.
 ## Commands:
 ### Setup:
