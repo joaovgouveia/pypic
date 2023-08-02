@@ -1,4 +1,4 @@
-# PyPic - Python Image Editor
+# PyPic - Python Image Editor - V 0.1
 > A, simple, terminal based, photo editor in python.
 
 ## How to setup
