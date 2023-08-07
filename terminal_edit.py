@@ -10,7 +10,7 @@ def open_terminal():
         if command == "0":
             return
         elif command == "h":
-            print("not finished")
+            print("https://github.com/JotaV-0/PyPic#readme")
         else:
             response = command_handler.handle_command(command, image)
             
