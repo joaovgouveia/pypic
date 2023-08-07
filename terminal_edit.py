@@ -1,7 +1,7 @@
 import command_handler
 
 def open_terminal():
-    print("pyEdit V0.1\n@author JotaV-0\n-----\nTERMINAL MODE:\nENTER '0' TO EXIT AND 'h' FOR HELP.\n-----")
+    print("pypic V0.1\n@author JotaV-0\n-----\nTERMINAL MODE:\nENTER '0' TO EXIT AND 'h' FOR HELP.\n-----")
 
     image = None
     while True:
