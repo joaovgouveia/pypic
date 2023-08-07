@@ -60,7 +60,7 @@ def handle_command(line, img):
             else:
                 response["sucsses"] = False
                 response["hasMessage"] = True
-                response["message"] = f"{args[0]} ISN'T A VALID ARGUMENT"
+                response["message"] = f"{args[0]} ISN'T A VALID ARGUMENT !"
                 response["image"] = img
         else:
             response["image"] = edit.flip_horizontal(img)
@@ -68,6 +68,27 @@ def handle_command(line, img):
 
         edit.save_image(response["image"], "work_img", working_image_path, "png")
     
+    elif command_name == "free_resize":
+        if hasArgs:
+            # TODO: make that if the input is "-" the arg gets replaced by the image height or width
+            new_size = (int(args[0]), int(args[1]))
+            try:
+                response["image"] = edit.free_resize(img, new_size)
+                response["sucsses"] = True
+
+                edit.save_image(response["image"], "work_img", working_image_path, "png")
+            except:
+                response["sucsses"] = False
+                response["hasMessage"] = True
+                response["message"] = f"{new_size} ISN'T A VALID SIZE !"
+                response["image"] = img
+                
+        else:
+            response["sucsses"] = False
+            response["hasMessage"] = True
+            response["message"] = "THIS FUNCTION NEEDS A SIZE (width and height) !"
+            response["image"] = img
+
     elif command_name == "test":
         print("bip bop")
     

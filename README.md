@@ -18,10 +18,12 @@
 ```
 ### Edit:
 ```sh
-> flip {direction} // flips the image.
+> flip {direction}
     -> directions:
         h - Horizontal flip.
         v - vertical flip.
+
+> free_resize {width} {height}
 ```
 ##
 JotaV-0: https://github.com/JotaV-0
