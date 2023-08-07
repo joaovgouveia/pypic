@@ -70,7 +70,10 @@ def handle_command(line, img):
     
     elif command_name == "free_resize":
         if hasArgs:
-            # TODO: make that if the input is "-" the arg gets replaced by the image height or width
+            for i in range(2):
+                if args[i] == "-":
+                    args[i] = edit.image_size(img)[i]
+
             new_size = (int(args[0]), int(args[1]))
             try:
                 response["image"] = edit.free_resize(img, new_size)
@@ -89,6 +92,25 @@ def handle_command(line, img):
             response["message"] = "THIS FUNCTION NEEDS A SIZE (width and height) !"
             response["image"] = img
 
+    elif command_name == "resize":
+        if hasArgs:
+            try:
+                response["image"] = edit.scale_resize(img, float(args[0]))
+                response["sucsses"] = True
+
+                edit.save_image(response["image"], "work_img", working_image_path, "png")
+            except:
+                response["sucsses"] = False
+                response["hasMessage"] = True
+                response["message"] = f"{new_size} ISN'T A VALID SCALE !"
+                response["image"] = img
+        
+        else:
+            response["sucsses"] = False
+            response["hasMessage"] = True
+            response["message"] = "THIS FUNCTION NEEDS A SIZE (width and height) !"
+            response["image"] = img
+
     elif command_name == "test":
         print("bip bop")
     
@@ -98,3 +120,6 @@ def handle_command(line, img):
         response["message"] = "COMMAND NOT FOUND"
 
     return response
+
+#TODO: enable edit only when theres a image opened
+#TODO: redo system

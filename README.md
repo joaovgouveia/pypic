@@ -24,6 +24,7 @@
         v - vertical flip.
 
 > free_resize {width} {height}
+> resize {scale}
 ```
 ##
 JotaV-0: https://github.com/JotaV-0
