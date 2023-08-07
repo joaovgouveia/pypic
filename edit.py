@@ -25,10 +25,9 @@ def rotate(image, angle, has_expand, fill_color):
 def crop(image, coordinates):
     return image.crop(coordinates)
 
-def scale_resize(image, scale, upscale):
+def scale_resize(image, scale):
     size = image.size
-    if upscale: return image.resize((math.ceil(size[0] * scale), math.ceil(size[1] * scale)))
-    else: return image.resize((math.ceil(size[0] / scale), math.ceil(size[1] / scale)))
+    return image.resize((math.ceil(size[0] * scale), math.ceil(size[1] * scale)))
         
 def free_resize(image, new_size):
     return image.resize((new_size[0], new_size[1]))
