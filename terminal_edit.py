@@ -1,9 +1,13 @@
 import command_handler
 
+def create_work_module(): 
+    return {"image": None, "index": -1, "command": None}
+
 def open_terminal():
     print("pyEdit V0.1\n@author JotaV-0\n-----\nTERMINAL MODE:\nENTER '0' TO EXIT AND 'h' FOR HELP.\n-----")
 
-    image = None
+    work_image = create_work_module()
+    
     while True:
         command = input("COMMAND:")
 
@@ -12,9 +16,11 @@ def open_terminal():
         elif command == "h":
             print("https://github.com/JotaV-0/PyPic#readme")
         else:
-            response = command_handler.handle_command(command, image)
+            response = command_handler.handle_command(command, work_image)
             
-            image = response["image"]
+            for k in work_image.keys:
+                work_image[k] = response[k]
+
             if response["hasMessage"]:
                 print(response["message"])
 
