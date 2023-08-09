@@ -2,3 +2,5 @@ output_images/*.jpg
 output_images/*.png
 work_images/*.jpg
 work_images/*.png
+
+__pycache__/
