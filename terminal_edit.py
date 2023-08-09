@@ -18,7 +18,7 @@ def open_terminal():
         else:
             response = command_handler.handle_command(command, work_image)
             
-            for k in work_image.keys:
+            for k in work_image.keys():
                 work_image[k] = response[k]
 
             if response["hasMessage"]:
