@@ -4,7 +4,7 @@ def create_work_module():
     return {"image": None, "index": -1, "command": None}
 
 def open_terminal():
-    print("pyEdit V0.1\n@author JotaV-0\n-----\nTERMINAL MODE:\nENTER '0' TO EXIT AND 'h' FOR HELP.\n-----")
+    print("pypic V0.1\n@author JotaV-0\n-----\nTERMINAL MODE:\nENTER '0' TO EXIT AND 'h' FOR HELP.\n-----")
 
     work_image = create_work_module()
     
