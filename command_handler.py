@@ -1,8 +1,8 @@
 import edit
 
-working_image_path = "./work_images"
-output_path = "./output_images"
-input_path = "./input_images"
+WORKING_IMAGE_PATH = "./work_images"
+OUTPUT_PATH = "./output_images"
+INPUT_PATH = "./input_images"
 
 def format_command(line):
     command_args = line.split()
@@ -10,7 +10,7 @@ def format_command(line):
     return {"name": command_name,"args": command_args}
 
 def save_working_image(response):
-    edit.save_image(response["image"], f'work_img_{response["index"]}', working_image_path, "png")
+    edit.save_image(response["image"], f'work_img_{response["index"]}', WORKING_IMAGE_PATH, "png")
 
 def handle_command(line, img):
     command = format_command(line)
@@ -30,11 +30,11 @@ def handle_command(line, img):
                 "hasMessage": False,
                 "message": "",
                 "index": img["index"] + 1,
-                "command": ""}
+                "command": None}
     
     if command_name == "open":
         response["sucsses"] = True
-        response["image"] = edit.open_image(f"{input_path}/{args[0]}")
+        response["image"] = edit.open_image(f"{INPUT_PATH}/{args[0]}")
     
         save_working_image(response)
 
@@ -44,15 +44,24 @@ def handle_command(line, img):
 
     elif command_name == "save":
         if hasArgs:
-            edit.save_image(img["image"], args[0], output_path, "png")
-            response["message"] = f"IMAGE {args[0]} SAVED.\nPATH: {output_path}/{args[0]}.png"
+            edit.save_image(img["image"], args[0], OUTPUT_PATH, "png")
+            response["message"] = f"IMAGE {args[0]} SAVED.\nPATH: {OUTPUT_PATH}/{args[0]}.png"
         else:
-            edit.save_image(img["image"], "final_image", output_path, "png")
-            response["message"] = f"IMAGE final_image SAVED.\nPATH: {output_path}/{args[0]}.png"
+            edit.save_image(img["image"], "final_image", OUTPUT_PATH, "png")
+            response["message"] = f"IMAGE final_image SAVED.\nPATH: {OUTPUT_PATH}/{args[0]}.png"
     
         response["sucsses"] = True
         response["hasMessage"] = True
         response["image"] = img["image"]
+
+    elif command_name == "undo":
+        response["image"] = edit.open_image(f'{WORKING_IMAGE_PATH}/work_img_{img["index"] - 1}')
+        response["command"] = "undo"
+        response["index"] = img["index"] - 1
+        response["hasMessage"] = True
+        response["message"] = f'Undone: {img["command"]}'
+        response["sucsses"] = True
+        save_working_image(response)
 
     elif command_name == "flip":
         if hasArgs:
@@ -118,7 +127,12 @@ def handle_command(line, img):
 
     elif command_name == "test":
         print("bip bop")
-    
+        response["image"]
+        response["sucsses"]
+        response["hasMessage"]
+        response["message"]
+        response["command"]
+
     else:
         response["sucsses"] = False
         response["hasMessage"] = True
@@ -128,3 +142,4 @@ def handle_command(line, img):
 
 #TODO: enable edit only when theres a image opened
 #TODO: undo system // in work
+#TODO: transform each command in a function inside a dictionary
