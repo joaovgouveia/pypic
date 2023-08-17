@@ -28,6 +28,7 @@ def show(args, default, img):
 
     edit.show_image(img["image"])
     response["sucsses"] = True
+    response["index"] = img["index"]
 
     return response
 
@@ -43,6 +44,7 @@ def save(args, default, img):
     
     response["sucsses"] = True
     response["hasMessage"] = True
+    response["index"] = img["index"]
     response["image"] = img["image"]
 
     return response
@@ -50,9 +52,9 @@ def save(args, default, img):
 def undo(args, default, img):
     response = default
 
-    response["image"] = edit.open_image(f'{WORKING_IMAGE_PATH}/work_img_{img["index"] - 1}')
+    response["image"] = edit.open_image(f'{WORKING_IMAGE_PATH}/work_img_{img["index"] - 1}.png')
     response["command"] = "undo"
-    response["index"] = img["index"] - 1
+    response["index"] = img["index"]
     response["hasMessage"] = True
     response["message"] = f'Undone: {img["command"]}'
     response["sucsses"] = True
@@ -87,6 +89,7 @@ def resize(args, default, img):
 
     if args != []:
         try:
+            assert float(args[0]) <= 5
             response["image"] = edit.scale_resize(img["image"], float(args[0]))
             response["sucsses"] = True
 
@@ -94,13 +97,13 @@ def resize(args, default, img):
         except:
             response["sucsses"] = False
             response["hasMessage"] = True
-            response["message"] = f"{new_size} ISN'T A VALID SCALE !"
+            response["message"] = f"{args[0]} ISN'T A VALID SCALE !"
             response["image"] = img["image"]
         
     else:
         response["sucsses"] = False
         response["hasMessage"] = True
-        response["message"] = "THIS FUNCTION NEEDS A SIZE (width and height) !"
+        response["message"] = "THIS FUNCTION NEEDS A SCALE (BETWEEN 0.1 AND 5)!"
         response["image"] = img["image"]
 
     return response
@@ -149,7 +152,8 @@ commands = {
     "flip": flip,
     "resize": resize,
     "free_resize": free_resize,
-    "command_list": ["open", "show", "save", "undo", "flip", "resize", "free_resize"]
+    "command_list": ["open", "show", "save", "undo", "flip", "resize", "free_resize"],
+    "base_commands": ["open"]
 }
 
 def handle_command(line, img):
@@ -172,14 +176,18 @@ def handle_command(line, img):
 
     response = default_response
     if command_name in commands["command_list"]:
-        response = commands[command_name](args, default_response, img)
+        if img["index"] == -1 and command_name not in commands["base_commands"]:
+            response["hasMessage"] = True
+            response["message"] = "CAN'T EXECUTE COMMAND WITHOUT A OPEN IMAGE !"
+            response["index"] = img["index"]
+        else:
+            response = commands[command_name](args, default_response, img)
     else:
         response["hasMessage"] = True
-        response["message"] = "Command not found"
+        response["message"] = "COMMAND NOT FOUND !"
         response["index"] = img["index"]
 
     return response
 
 #TODO: enable edit only when theres a image opened
 #TODO: undo system // in work
-#TODO: transform each command in a function inside a dictionary // in work

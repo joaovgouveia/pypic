@@ -13,18 +13,20 @@
 ### Setup:
 ```sh
 > open [image_name] // loads the image.
+
 > save [image_name] // saves the image.
+
 > show // preview the image.
 ```
 ### Edit:
 ```sh
-> flip {direction}
-    -> directions:
-        h - Horizontal flip.
-        v - vertical flip.
+> flip {direction} // directions: h - Horizontal flip / v - vertical flip.
 
 > free_resize {width} {height}
-> resize {scale}
+
+> resize {scale} // scale: a value between 0.1 and 5.
+
+> undo // undoes the last modification.
 ```
 ##
 JotaV-0: https://github.com/JotaV-0
