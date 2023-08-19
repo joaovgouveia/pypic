@@ -137,6 +137,7 @@ def free_resize(args, default, img):
 
 def rotate(args, default, img):
     response = default
+    
     try:
         if len(args) == 2:
             if args[1] == "false":
