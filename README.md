@@ -22,9 +22,11 @@
 ```sh
 > flip {direction} // directions: h - Horizontal flip / v - vertical flip.
 
-> free_resize {width} {height}
+> free_resize [width] [height]
 
-> resize {scale} // scale: a value between 0.1 and 5.
+> resize [scale] // scale: a value between 0.1 and 5.
+
+> rotate [angle] {do_crop}// angle: a value in degrees.
 
 > undo // undoes the last modification.
 ```

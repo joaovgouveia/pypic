@@ -21,7 +21,7 @@ def open_terminal():
             for k in work_image.keys():
                 work_image[k] = response[k]
 
-            if response["hasMessage"]:
+            if response["has_message"]:
                 print(response["message"])
 
 if __name__ == "__main__":

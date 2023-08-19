@@ -19,8 +19,9 @@ def flip_horizontal(image):
 def flip_vertical(image):
     return image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
 
-def rotate(image, angle, has_expand, fill_color):
-    return image.rotate(angle, expand = has_expand, fillcolor = ImageColor.getcolor(fill_color, 'RGB'))
+def rotate(image, angle, has_expand):
+    return image.rotate(angle, expand = has_expand)
+#   fillcolor = ImageColor.getcolor(fill_color, 'RGB')
 
 def crop(image, coordinates):
     return image.crop(coordinates)
