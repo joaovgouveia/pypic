@@ -40,7 +40,7 @@ def handle_command(line, img):
     if command_name in commands_module["command_list"]:
         if img["index"] == -1 and command_name not in commands_module["base_commands"]:
             response["has_message"] = True
-            response["message"] = "CAN'T EXECUTE COMMAND WITHOUT A OPEN IMAGE !"
+            response["message"] = f"\33[31mCAN'T EXECUTE COMMAND WITHOUT A OPEN IMAGE !\33[00m"
             response["index"] = img["index"]
         else:
             response = commands_module[command_name](args, default_response, img)
