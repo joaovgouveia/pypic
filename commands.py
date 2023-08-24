@@ -39,7 +39,7 @@ def show(args, default, img):
     response["sucsses"] = True
     response["index"] = img["index"]
 
-    response["command"] = "show"
+    response["command"] = img["command"]
     return response
 
 def save(args, default, img):
@@ -56,20 +56,22 @@ def save(args, default, img):
     response["has_message"] = True
     response["index"] = img["index"]
 
-    response["command"] = "save"
+    response["command"] = img["command"]
     return response
 
 def undo(args, default, img):
     response = default
 
-    response["image"] = edit.open_image(f'{WORKING_IMAGE_PATH}/work_img_{img["index"] - 1}.png')
-    response["index"] = img["index"]
-    response["has_message"] = True
-    response["message"] = f'\33[33mUNDONE: {img["command"]}\33[00m'
-    response["sucsses"] = True
-    save_working_image(response)
+    if img["index"] <= 0:
+        fail(response, img, "CAN'T UNDO THE LAST COMMAND!")
+    else:
+        response["image"] = edit.open_image(f'{WORKING_IMAGE_PATH}/work_img_{img["index"] - 1}.png')
+        response["index"] = img["index"] - 1
+        response["has_message"] = True
+        response["message"] = f'\33[33mUNDONE: {img["command"]}\33[00m'
+        response["sucsses"] = True
 
-    response["command"] = "undo"
+    response["command"] = img["command"]
     return response
 
 def flip(args, default, img):
